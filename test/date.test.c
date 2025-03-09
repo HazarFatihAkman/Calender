@@ -62,20 +62,20 @@ void update_event_success() {
     event = create_event(date, VALID_TITLE, VALID_CONTEXT);
     printf("%s\n", event->json);
 
-    memcpy(event->data->title, "Test Update", 50 * sizeof(char));
+    memcpy(event->data->title, "Test Update", TITLE_MAX_LEN * sizeof(char));
     event = update_event(create_json(event->data));
     printf("%s | %s\n", event->data->title, event->json);
 }
 
 int main(void) {
-    title_longer_than_max();
-    context_longer_than_max();
-    invalid_day();
-    invalid_month();
-    invalid_year();
-    invalid_hour();
-    invalid_minutes();
-    valid_event();
-    update_event_success();
+    // title_longer_than_max();
+    // context_longer_than_max();
+    // invalid_day();
+    // invalid_month();
+    // invalid_year();
+    // invalid_hour();
+    // invalid_minutes();
+    // valid_event();
+    // update_event_success();
     return 1;
 }

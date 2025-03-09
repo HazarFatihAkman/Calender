@@ -2,31 +2,36 @@
 
 const char json_replacement[JSON_REPLACEMENT_SIZE] = { '{', '}', '\"' };
 
-char* get_json_data(char *json_data, char *key) {
+char* get_json_data(char *json_data, const char *key) {
     if (json_data[0] == '\0' && key[0] == '\0') {
         return NULL;
     }
+    char *token = malloc(JSON_MAX_SIZE * sizeof(char)),
+         *temp = malloc(JSON_MAX_SIZE * sizeof(char)),
+         *response = malloc(JSON_MAX_SIZE * sizeof(char));
+
+    strcpy(temp, json_data);
 
     for (int i = 0; i < JSON_REPLACEMENT_SIZE; i++) {
         int x = 0;
-        for (int j = 0; j <= strlen(json_data); j++) {
-            if (json_data[j] != json_replacement[i]) {
-                json_data[x++] = json_data[j];
+        for (int j = 0; j <= strlen(temp); j++) {
+            if (temp[j] != json_replacement[i]) {
+                temp[x++] = temp[j];
             }
         }
     }
 
-    char *token = strtok(json_data, ",");
+    token = strtok(temp, ",");
+
     while (token != NULL && token[0] != '\0') {
         if (strstr(token, key)) {
-            char *value = strtok(token, ":");
-            if (strstr(value, key)) {
-                value = strtok(NULL, ":");
+            response = strtok(token, ":");
+            if (strstr(response, key)) {
+                response = strtok(NULL, ":");
             }
-            json_data = value;
         }
         token = strtok(NULL, ",");
     }
 
-    return json_data;
+    return response;
 }
