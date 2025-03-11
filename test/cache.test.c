@@ -6,7 +6,7 @@ int cache_size;
 
 typedef struct {
     int index;
-    char *value; 
+    char *value;
 } Cache;
 
 Cache **Caches;
