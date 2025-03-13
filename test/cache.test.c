@@ -1,70 +1,58 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+// #include "../include/cache.h"
 
-int cache_size;
+// int run_cache_test(void) {
+//     c_lists = (Cache_List**)malloc(sizeof(Cache_List));
+//     char *t_c_namespace = "test.c_namespace";
+//     char *t_c_namespace2 = "test.c_namespace.2";
 
-typedef struct {
-    int index, expire;
-    char *value;
-} Cache;
+//     Cache *c_1 = (Cache *)malloc(sizeof(Cache));
+//     c_1->value = "c_1 Test 1";
+//     push_cache(t_c_namespace, c_1);
 
-typedef struct {
-    char *namespace;
-    Cache **Caches;
-} Cache_List;
+//     Cache *c_2 = (Cache *)malloc(sizeof(Cache));
+//     c_2->value = "c_2 Test 2";
+//     push_cache(t_c_namespace, c_2);
 
-Cache **Caches;
+//     Cache *c_3 = (Cache *)malloc(sizeof(Cache));
+//     c_3->value = "c_3 Test 3";
+//     push_cache(t_c_namespace, c_3);
 
-void push_cache(Cache *c) {
-    Caches = (Cache**)realloc(Caches, (cache_size+ 1) * sizeof(Cache));
-    c->index = cache_size;
-    printf("push_cache = %d\n", c->index);
-    Caches[cache_size] = c;
-    cache_size++;
-}
+//     Cache *c_1_1 = (Cache *)malloc(sizeof(Cache));
+//     c_1_1->value = "c_1_1 Test 1";
+//     push_cache(t_c_namespace2, c_1_1);
 
-void delete_cache(Cache *c) {
-    for (int i = 0; i < cache_size; i++) {
-        if (i >= c->index && i < cache_size - 1) {
-            Caches[i] = Caches[i+1];
-            Caches[i]->index = i;
-        }
+//     Cache *c_1_2 = (Cache *)malloc(sizeof(Cache));
+//     c_1_2->value = "c_1_2 Test 2";
+//     push_cache(t_c_namespace2, c_1_2);
 
-        if (i == (cache_size - 1)) {
-            Caches[i] = NULL;
-        }
-    }
+//     Cache *c_1_3 = (Cache *)malloc(sizeof(Cache));
+//     c_1_3->value = "c_1_3 Test 3";
+//     push_cache(t_c_namespace2, c_1_3);
 
-    cache_size--;
-    Caches = realloc(Caches, cache_size * sizeof(Cache));
-    free(c);
-}
+//     printf("Print Cache_List\n");
+//     for (int i = 0; i < c_lists_size; i++) {
+//         printf("c_namespace : %s \n", c_lists[i]->c_namespace);
+        
+//         for (int j = 0; j < c_lists[i]->size; j++) {
+//             printf("Value : %s\n", c_lists[i]->Caches[j]->value);
+//         }
+//     }
 
-int main(void) {
-    Caches = (Cache**)calloc(sizeof(Cache), cache_size);
-    Cache *cache_1 = (Cache*)malloc(sizeof(Cache));
-    cache_1->value = "TEST 1";
-    push_cache(cache_1);
+//     delete_cache(t_c_namespace2, c_1_2);
+//     delete_cache(t_c_namespace, c_3);
+//     printf("\nDeleted Cache_List\n");
+//     for (int i = 0; i < c_lists_size; i++) {
+//         printf("c_namespace : %s \n", c_lists[i]->c_namespace);
+        
+//         for (int j = 0; j < c_lists[i]->size; j++) {
+//             printf("Value : %s\n", c_lists[i]->Caches[j]->value);
+//         }
+//     }
 
-    Cache *cache_2 = (Cache*)malloc(sizeof(Cache));
-    cache_2->value = "TEST 2";
-    push_cache(cache_2);
+//     Cache_List *c_test_list = fetch_caches(t_c_namespace2);
+//     for (int i = 0; i < c_test_list->size; i++) {
+//             printf("c_namespace : %s | Value : %s\n", c_test_list->c_namespace, c_test_list->Caches[i]->value);
+//     }
 
-    Cache *cache_3 = (Cache*)malloc(sizeof(Cache));
-    cache_3->value = "TEST 3";
-    push_cache(cache_3);
-
-    printf("Print Caches \nValue | Index\n");
-    for (int i = 0; i < cache_size; i++) {
-        printf("%s | %d\n", Caches[i]->value, Caches[i]->index);
-    }
-
-    delete_cache(cache_3);
-    printf("Delete Caches \nValue | Index\n");
-    for (int i = 0; i < cache_size; i++) {
-        printf("%s | %d\n", Caches[i]->value, Caches[i]->index);
-    }
-
-    return 1;
-}
+//     return 1;
+// }

@@ -1,0 +1,59 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create build directory",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "../build"  // Ensure the build directory exists
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Ensure build directory exists"
+        },
+        {
+            "label": "build main project",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",
+                "-o", "../build/main",  // Output executable
+                "src/main.c",
+                "-L../lib",             // Link the cache library
+                "-lcache",               // Link against libcache.so
+                "-I../include"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the main project"
+        },
+        {
+            "label": "build test project",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",
+                "-o", "../build/main_test",  // Output executable
+                "test/main.c",
+                "-L../lib",             // Link the cache library
+                "-lcache",               // Link against libcache.so
+                "-I../include"          // Include path to find cache.h
+
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the test project"
+        }
+    ]
+}

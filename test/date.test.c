@@ -67,15 +67,15 @@ void update_event_success() {
     printf("%s | %s\n", event->data->title, event->json);
 }
 
-int main(void) {
-    // title_longer_than_max();
-    // context_longer_than_max();
-    // invalid_day();
-    // invalid_month();
-    // invalid_year();
-    // invalid_hour();
-    // invalid_minutes();
-    // valid_event();
-    // update_event_success();
+int run_date_test(void) {
+    title_longer_than_max();
+    context_longer_than_max();
+    invalid_day();
+    invalid_month();
+    invalid_year();
+    invalid_hour();
+    invalid_minutes();
+    valid_event();
+    update_event_success();
     return 1;
 }

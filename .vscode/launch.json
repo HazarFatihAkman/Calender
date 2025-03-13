@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Test Project",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/main_test",  // Path to the compiled executable (no .exe for Linux/macOS)
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",  // Set working directory to the workspace folder
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",  // For Linux
+                    "value": "${workspaceFolder}/build"  // Add path to the shared library (cache.so)
+                },
+                {
+                    "name": "DYLD_LIBRARY_PATH",  // For macOS
+                    "value": "${workspaceFolder}/build"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",  // Use GDB debugger
+            "miDebuggerPath": "/usr/bin/gdb",  // Path to GDB on Linux/macOS
+            "preLaunchTask": "build main project",  // Ensure the project is built before launching the debugger
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+        
+    ]
+}
